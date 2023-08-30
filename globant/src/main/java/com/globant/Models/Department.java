@@ -1,6 +1,9 @@
 package com.globant.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name="department")
@@ -14,13 +17,21 @@ public class Department {
     // nombre del departamento
     public String department;
 
-    @OneToOne(mappedBy = "department", fetch = FetchType.LAZY)
-    private HiredEmployee hiredEmployee;
-
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    private ArrayList<HiredEmployee> hiredEmployee;
 
     public Department(int id, String department) {
         this.id = id;
         this.department = department;
+    }
+
+    public ArrayList<HiredEmployee> getHiredEmployee() {
+        return hiredEmployee;
+    }
+
+    public void setHiredEmployee(ArrayList<HiredEmployee> hiredEmployee) {
+        this.hiredEmployee = hiredEmployee;
     }
 
     public Department() {}

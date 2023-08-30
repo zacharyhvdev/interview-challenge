@@ -14,15 +14,21 @@ public class Job {
 
     private String job;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private HiredEmployee hiredEmployees;
-
-
+    @OneToMany(mappedBy = "job")
+    private List<HiredEmployee> hiredEmployee;
     public Job() {
     }
     public Job(int id, String job) {
         this.id = id;
         this.job = job;
+    }
+
+    public List<HiredEmployee> getHiredEmployee() {
+        return hiredEmployee;
+    }
+
+    public void setHiredEmployee(List<HiredEmployee> hiredEmployee) {
+        this.hiredEmployee = hiredEmployee;
     }
 
     public int getId() {

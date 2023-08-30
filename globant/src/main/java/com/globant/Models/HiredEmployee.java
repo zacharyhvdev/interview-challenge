@@ -18,41 +18,40 @@ public class HiredEmployee {
     private String name;
     private LocalDateTime datetime;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ArrayList<Department> departments;
+    private Department department;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="job_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ArrayList<Job> jobs;
+    private Job job;
 
-    public HiredEmployee(int id, String name, LocalDateTime datetime, Department department, Job job) {
+    public HiredEmployee(int id, String name, LocalDateTime datetime, Job job, Department department) {
         this.id = id;
         this.name = name;
         this.datetime = datetime;
+        this.job = job;
+        this.department = department;
     }
 
     public HiredEmployee() {
 
     }
 
-
-    public ArrayList<Department> getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(ArrayList<Department> departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public ArrayList<Job> getJobs() {
-        return jobs;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobs(ArrayList<Job> jobs) {
-        this.jobs = jobs;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     public int getId() {
