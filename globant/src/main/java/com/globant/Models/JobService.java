@@ -1,7 +1,12 @@
 package com.globant.Models;
 
+import com.globant.BusinessLogic.ReadFromCSV;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class JobService {
@@ -19,5 +24,13 @@ public class JobService {
 
     public Job getJob(int id) {
         return jobRepository.findById(id).orElse(null);
+    }
+
+    public ResponseEntity<String> migrateJob(String file_name) throws IOException {
+
+        ReadFromCSV readFromCSV = new ReadFromCSV();
+        jobRepository.saveAll(ReadFromCSV.LoadCSVtoJob(file_name));
+
+        return new ResponseEntity("Job migrated successfully", HttpStatus.OK);
     }
 }

@@ -23,11 +23,11 @@ public class HiredEmployee {
     private LocalDateTime datetime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="job_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name="job_id", referencedColumnName = "id")
     private Job job;
 
     public HiredEmployee(int id, String name, LocalDateTime datetime, Job job, Department department) {

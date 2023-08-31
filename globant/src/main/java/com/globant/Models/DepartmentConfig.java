@@ -17,9 +17,8 @@ public class DepartmentConfig {
         return args -> {
 
             ReadFromCSV readFromCSV = new ReadFromCSV();
-            List<Job> jobs = ReadFromCSV.LoadCSVtoJob("C:\\Users\\z.hernandez.valverde\\Documents\\Prueba Tecnica\\prueba data\\prueba data\\departments.csv");
-            for (Job job : jobs) {
-                System.out.println(job.getId());
+            List<HiredEmployee> hes = ReadFromCSV.LoadCSVtoHiredEmployee("C:\\Users\\z.hernandez.valverde\\Documents\\Prueba Tecnica\\prueba data\\prueba data\\hired_employees.csv");
+            for (HiredEmployee he : hes) {
             }
         };
     }

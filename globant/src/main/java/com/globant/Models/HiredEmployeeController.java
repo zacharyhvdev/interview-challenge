@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +44,11 @@ public class HiredEmployeeController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleException(DateTimeParseException e) {
         return new ResponseEntity<>("Datetime format is not valid", HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("migrate_hired_employee")
+    public ResponseEntity<String> migrateHiredEmployee() throws IOException {
+        String file_name = "C:\\Users\\z.hernandez.valverde\\Documents\\Prueba Tecnica\\prueba data\\prueba data\\hired_employees.csv";
+        return hiredEmployeeService.migrateHiredEmployee(file_name);
     }
 }
