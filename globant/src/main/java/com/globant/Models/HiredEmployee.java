@@ -15,15 +15,19 @@ public class HiredEmployee {
     @Id
     @Column(unique = true)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private LocalDateTime datetime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="job_id", referencedColumnName = "id")
+    @JoinColumn(name="job_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Job job;
 
     public HiredEmployee(int id, String name, LocalDateTime datetime, Job job, Department department) {

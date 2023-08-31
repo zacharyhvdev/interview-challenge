@@ -1,5 +1,6 @@
 package com.globant.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,9 +13,11 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
+    @Column(nullable = false)
     private String job;
 
     @OneToMany(mappedBy = "job")
+    @JsonIgnore
     private List<HiredEmployee> hiredEmployee;
     public Job() {
     }

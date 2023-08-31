@@ -1,9 +1,11 @@
 package com.globant.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="department")
@@ -15,18 +17,20 @@ public class Department {
     public int id;
 
     // nombre del departamento
+
+    @Column(nullable = false)
     public String department;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     @JsonIgnore
-    private ArrayList<HiredEmployee> hiredEmployee;
+    private List<HiredEmployee> hiredEmployee;
 
     public Department(int id, String department) {
         this.id = id;
         this.department = department;
     }
 
-    public ArrayList<HiredEmployee> getHiredEmployee() {
+    public List<HiredEmployee> getHiredEmployee() {
         return hiredEmployee;
     }
 

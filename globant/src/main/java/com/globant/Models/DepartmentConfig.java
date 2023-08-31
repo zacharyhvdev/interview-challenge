@@ -1,5 +1,6 @@
 package com.globant.Models;
 
+import com.globant.BusinessLogic.ReadFromCSV;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -15,12 +16,11 @@ public class DepartmentConfig {
             DepartmentRepository repository) {
         return args -> {
 
-//            Department department = new Department(
-//                    1,
-//                    "Information Technology"
-//            );
-//
-//            repository.saveAll(List.of(department));
+            ReadFromCSV readFromCSV = new ReadFromCSV();
+            List<Job> jobs = ReadFromCSV.LoadCSVtoJob("C:\\Users\\z.hernandez.valverde\\Documents\\Prueba Tecnica\\prueba data\\prueba data\\departments.csv");
+            for (Job job : jobs) {
+                System.out.println(job.getId());
+            }
         };
     }
 }
