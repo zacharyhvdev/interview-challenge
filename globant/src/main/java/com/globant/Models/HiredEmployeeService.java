@@ -74,7 +74,6 @@ public class HiredEmployeeService {
                 continue;
             }
 
-            System.out.println(hiredEmployee.getJob().getId());
             hiredEmployeeRepository.save(hiredEmployee);
         }
 
